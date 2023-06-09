@@ -1,7 +1,7 @@
 Gotranslate is a very simple HTML/template package translator.
 
 ```go
-import "github.com/invictadux/gotranslate"
+import "github.com/invictadux/gotranslator"
 
 ```
 
@@ -25,12 +25,12 @@ var helloTemplate *template.Template
 func Hello(w http.ResponseWriter, r *http.Request) {
 	page := map[string]interface{}{}
 	page["Lang"] = "es"
-	helloTemplate
+	helloTemplate.Execute(w, page)
 }
 
 func main() {
 	translator = *gotranslator.New("en", "lang.json")
-	helloTemplate = translator.NewTemplate("hello.html","nav.html",...)
+	helloTemplate = translator.NewTemplate("hello.html", ...)
 	
 	http.HandleFunc("/", Hello)
 
@@ -48,9 +48,10 @@ You have to specify id and lang to insert the correct text.
         <title>Hello Page</title>
     </head>
     <body>
-        {{template "nav" .}}
-        {{uselang "hello" .Lang}}
+        <p>Hello in {{.Lang}} is {{uselang "hello" .Lang}}</p>
     </body>
 </html>
 ```
+
+This is a very simple package don't expect more from it, maybe i will add more features in the future.
 

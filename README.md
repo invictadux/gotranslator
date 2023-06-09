@@ -18,7 +18,15 @@ You should have a json file with all the words and phrased that you want to have
 ```
 
 ```go
-import "github.com/invictadux/gotranslator"
+package main
+
+import (
+	"log"
+	"net/http"
+	"text/template"
+
+	"github.com/invictadux/gotranslator"
+)
 
 var translator gotranslator.Translator
 var helloTemplate *template.Template
@@ -31,11 +39,11 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	translator = *gotranslator.New("en", "lang.json")
-	helloTemplate = translator.NewTemplate("hello.html", ...)
-	
+	helloTemplate = translator.NewTemplate("hello.html")
+
 	http.HandleFunc("/", Hello)
 
-	err := http.ListenAndServe(":8000", nil)
+	log.Fatal(http.ListenAndServe(":8000", nil))
 }
 ```
 

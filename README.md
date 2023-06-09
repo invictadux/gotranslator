@@ -1,8 +1,7 @@
 Gotranslate is a very simple HTML/template package translator.
 
-```go
-import "github.com/invictadux/gotranslator"
-
+```bash
+go get github.com/invictadux/gotranslator
 ```
 
 You should have a json file with all the words and phrased that you want to have translated.
@@ -19,6 +18,8 @@ You should have a json file with all the words and phrased that you want to have
 ```
 
 ```go
+import "github.com/invictadux/gotranslator"
+
 var translator gotranslator.Translator
 var helloTemplate *template.Template
 
